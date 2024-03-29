@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [loginbtn, setLoginbtn] = useState("Login");
@@ -14,9 +15,18 @@ const Header = () => {
       ></img>
 
       <div className="links">
-        <li>Home</li>
-        <li>About</li>
-        <li>Card</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <Link to="/card">Card</Link>
+        </li>
         <button onClick={logincheck}>{loginbtn}</button>
       </div>
     </div>
