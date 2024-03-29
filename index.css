@@ -74,6 +74,17 @@ body {
   width: 100px;
   border-radius: 4px;
 }
+.filter > button {
+  width: 100px;
+  border-radius: 4px;
+}
+input {
+  margin: 10px;
+  padding: 0 5px;
+  width: 200px;
+  height: 35px;
+}
+
 button {
   border-radius: 4px;
   width: 200px;
