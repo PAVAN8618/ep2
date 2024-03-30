@@ -12,13 +12,13 @@ const Card = ({ resturent }) => {
     <div className="card">
       <img
         className="img_card"
-        src={`https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING/${cloudinaryImageId}`}
+        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
         alt="img-card"
       />
       <div className="card-text">
         <p>{name}</p>
         <p>
-          {cuisines[0]} ,{cuisines[1]}
+          {cuisines[0]} , {cuisines[1]}
         </p>
 
         <p>{costForTwo}</p>
