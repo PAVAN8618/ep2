@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import Card from "./Card";
 
 const Main = () => {
@@ -9,7 +9,7 @@ const Main = () => {
   const [searchtext, setsearchtext] = useState("");
 
   const topRated = () => {
-    const Resturent = listOfResturent.filter((s) => s.info.avgRating > 4.3);
+    const Resturent = listOfResturent.filter((s) => s.info.avgRating > 4.2);
     setlistOfRestaurant(Resturent);
     console.log(Resturent);
   };
@@ -34,7 +34,9 @@ const Main = () => {
     let filterdata = listOfResturent.filter((search) =>
       search.info.name.toLowerCase().includes(searchtext.toLowerCase())
     );
-    setFilterResturent(filterdata);
+    {
+      filterdata && setFilterResturent(filterdata);
+    }
     setsearchtext("");
   };
   useEffect(() => {
@@ -56,7 +58,9 @@ const Main = () => {
       <button onClick={topRated}>Top rated resturend</button>
       <div className="main">
         {filterResturent.map((resturent) => (
-          <Card key={resturent.info.id} resturent={resturent} />
+          <Link to={"/restaurant/" + resturent.info.id} key={resturent.info.id}>
+            <Card resturent={resturent} />
+          </Link>
         ))}
       </div>
     </>

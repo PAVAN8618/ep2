@@ -6,16 +6,15 @@ body {
 .container {
   display: flex;
   height: 80px;
-  background: #7a2929;
+  background: #5f4848;
   justify-content: space-between;
-  color: aliceblue;
+  color: hwb(0 80% 19%);
 }
 
 .logo {
   width: 50px;
   height: 50px;
   border-radius: 50px;
-
   margin: 20px;
 }
 
@@ -30,13 +29,13 @@ body {
 .links :hover {
   cursor: pointer;
   border: 2px solid rgb(244, 160, 160);
-  border-radius: 8px;
+  border: none;
 }
 
 .footer {
   height: 70px;
-  background-color: #847d7d;
-  color: blue;
+  background-color: #5f4848;
+  color: #f4f4fa;
   position: relative;
   padding: 5px;
   text-align: center;
@@ -45,17 +44,23 @@ body {
 .main {
   display: flex;
   flex-wrap: wrap;
+  margin-left: 10px;
 }
 
 .card {
   border-radius: 5px;
   padding: 5px;
-  height: 300px;
+  height: 350px;
   width: 200px;
-  color: rgb(186, 82, 82);
-  background-color: bisque;
-  margin: 5px;
+  color: rgb(73, 4, 4);
+  background-color: rgb(224, 213, 213);
+  margin: 10px;
   border-radius: 5px;
+}
+.card:hover {
+  position: relative;
+  top: -10px;
+  transition: 1s;
 }
 .img_card {
   width: 200px;
@@ -91,10 +96,24 @@ button {
   height: 40px;
   margin: 10px;
   cursor: pointer;
-  background-color: blueviolet;
+  background-color: rgb(121, 101, 141);
   border: none;
 }
 button:hover {
   background-color: black;
   color: aliceblue;
+}
+
+.about {
+  padding: 50px;
+  margin-left: 200px;
+  border: solid rgb(213, 176, 176);
+  width: 400px;
+  border-radius: 30px;
+}
+
+.about_img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }

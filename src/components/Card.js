@@ -20,7 +20,7 @@ const Card = ({ resturent }) => {
         <p>
           {cuisines[0]} , {cuisines[1]}
         </p>
-
+        <p>{id}</p>
         <p>{costForTwo}</p>
         <p>{avgRating}</p>
         <p>{areaName}</p>
