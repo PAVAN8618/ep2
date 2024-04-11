@@ -1,20 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
+  const status = useOnlineStatus();
   const [loginbtn, setLoginbtn] = useState("Login");
   const logincheck = () => {
     loginbtn === "Login" ? setLoginbtn("Logout") : setLoginbtn("Login");
   };
   return (
-    <div className="container">
-      <img
-        className="logo"
-        alt="res-img"
-        src="https://images.pexels.com/photos/1833349/pexels-photo-1833349.jpeg?auto=compress&cs=tinysrgb&w=600"
-      ></img>
+    <div className="flex justify-between bg-emerald-900 items-center ">
+      <Link to={"/"}>
+        <img
+          className="w-10 h-10 rounded-full m-4"
+          alt="res-img"
+          src="https://images.pexels.com/photos/1833349/pexels-photo-1833349.jpeg?auto=compress&cs=tinysrgb&w=600"
+        ></img>
+      </Link>
 
-      <div className="links">
+      <div className="flex mx-5 list-none space-x-4">
+        <li>{status === false ? "❌" : "✅"}</li>
         <li>
           <Link to="/">Home</Link>
         </li>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Card from "./Card";
+import Card, { withPromotedCard } from "./Card";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import DummyCard from "./DummyCard";
 
 const Main = () => {
   const [listOfResturent, setlistOfRestaurant] = useState([]);
@@ -8,26 +10,30 @@ const Main = () => {
 
   const [searchtext, setsearchtext] = useState("");
 
+  const status = useOnlineStatus();
+
+  const PromotedCard = withPromotedCard(Card);
+
   const topRated = () => {
     const Resturent = listOfResturent.filter((s) => s.info.avgRating > 4.2);
     setlistOfRestaurant(Resturent);
-    console.log(Resturent);
   };
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    //console.log(json.data.cards[1]);
 
     setlistOfRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilterResturent(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    console.log(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    // console.log(
+    //   json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
   };
 
   const handleSearch = () => {
@@ -39,27 +45,51 @@ const Main = () => {
     }
     setsearchtext("");
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(listOfResturent);
+  if (!listOfResturent.length) {
+    return <DummyCard />;
+  }
+  if (status === false) {
+    return <h1> you are offline, check your internate connection!!!</h1>;
+  }
+
+  console.log(filterResturent);
   return (
     <>
-      <div className="filter">
+      <div className="p-2 m-4 space-x-4 ">
         <input
           type="text"
           placeholder="Search"
           value={searchtext}
           onChange={(e) => setsearchtext(e.target.value)}
+          className="p-1  border-2"
         />
-        <button onClick={handleSearch}>Search</button>
+        <button
+          onClick={handleSearch}
+          className="w-20 h-10 bg-emerald-500 rounded-md hover:bg-emerald-700"
+        >
+          Search
+        </button>
+        <button
+          onClick={topRated}
+          className="w-24 h-10 bg-emerald-500 rounded-md hover:bg-emerald-700"
+        >
+          Top Rated
+        </button>
       </div>
-      <button onClick={topRated}>Top rated resturend</button>
-      <div className="main">
+
+      <div className="flex flex-wrap">
         {filterResturent.map((resturent) => (
           <Link to={"/restaurant/" + resturent.info.id} key={resturent.info.id}>
-            <Card resturent={resturent} />
+            {resturent.info.isOpen ? (
+              <PromotedCard resturent={resturent} />
+            ) : (
+              <Card resturent={resturent} />
+            )}
           </Link>
         ))}
       </div>
