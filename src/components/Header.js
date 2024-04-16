@@ -9,7 +9,7 @@ const Header = () => {
     loginbtn === "Login" ? setLoginbtn("Logout") : setLoginbtn("Login");
   };
   return (
-    <div className="flex justify-between bg-emerald-900 items-center ">
+    <div className="flex justify-between bg-emerald-900 items-center text-white ">
       <Link to={"/"}>
         <img
           className="w-10 h-10 rounded-full m-4"

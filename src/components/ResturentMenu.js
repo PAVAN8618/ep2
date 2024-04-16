@@ -1,43 +1,50 @@
 //https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=381853&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER
-
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useResturantMenu from "../utils/useResturantMenu";
 import DummyCard from "./DummyCard";
+import { ResturantCategory } from "./ResturantCategory";
 
 const ResturentMenu = () => {
   const { resId } = useParams();
   const resinfo = useResturantMenu(resId);
 
-  console.log(resinfo);
+  const [showIndex, setshowIndex] = useState(null);
+
   if (resinfo === null) {
     return <DummyCard />;
   }
 
-  const { name, costForTwo, avgRating, locality, cuisines } =
-    resinfo?.cards[2]?.card?.card?.info;
+  const { name, avgRating, cuisines } = resinfo?.cards[2]?.card?.card?.info;
 
   const { itemCards } =
-    resinfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card;
+    resinfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
-  console.log(itemCards);
+  const categories =
+    resinfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter(
+      (c) =>
+        c.card?.["card"]?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
+  //console.log(resinfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards);
 
   return (
-    <div className="m-4 p-2 mx-96 text-center text-pink-950 w-[500]  bg-green-100">
-      <h1 className="text-2xl border-y">{name}</h1>
+    <div className="m-4 p-2 mx-52 text-center text-pink-950 w-[800]  bg-green-200">
+      <h1 className="text-2xl border-y font-bold">{name}</h1>
       <h3>{cuisines.join(",")}</h3>
-      <h4>{costForTwo / 100}- for Two</h4>
+
       <h4>Rating-{avgRating}</h4>
-      <h4>{locality}</h4>
+
       <h2>Menu</h2>
       <ul>
-        {itemCards.map((item) => (
-          <>
-            <li key={item.card.info.id}>
-              {item.card.info.name} -{" "}
-              {item.card.info.price / 100 || item.card.info.defaultPrice / 100}{" "}
-              Rs.
-            </li>
-          </>
+        {categories.map((category, index) => (
+          <ResturantCategory
+            key={category.card.card.id}
+            data={category.card.card}
+            showItem={index === showIndex ? true : false}
+            setshowIndex={() => setshowIndex(index)}
+          />
         ))}
       </ul>
     </div>

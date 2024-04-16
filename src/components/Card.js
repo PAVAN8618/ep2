@@ -9,9 +9,9 @@ const Card = ({ resturent }) => {
     costForTwo,
   } = resturent.info;
   return (
-    <div className=" m-4 bg-emerald-100  hover:bg-emerald-200 rounded-lg">
+    <div className=" m-4 bg-emerald-100  w-[210] h-[250] overflow-hidden shadow-lg hover:bg-emerald-200 rounded-lg">
       <img
-        className="w-[180] h-[180] p-3 rounded-2xl"
+        className="w-[150] h-[150] text-center rounded-2xl p-2 ml-8"
         src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
         alt="img-card"
       />
@@ -20,8 +20,7 @@ const Card = ({ resturent }) => {
         <p>
           {cuisines[0]} , {cuisines[1]}
         </p>
-        <p>{id}</p>
-        <p>{costForTwo}</p>
+
         <p>{avgRating}</p>
         <p>{areaName}</p>
       </div>

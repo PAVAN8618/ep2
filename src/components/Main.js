@@ -15,12 +15,12 @@ const Main = () => {
   const PromotedCard = withPromotedCard(Card);
 
   const topRated = () => {
-    const Resturent = listOfResturent.filter((s) => s.info.avgRating > 4.2);
+    const Resturent = listOfResturent.filter((s) => s.info.avgRating > 3);
     setlistOfRestaurant(Resturent);
   };
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.3176452&lng=82.9739144&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     //console.log(json.data.cards[1]);
@@ -57,7 +57,7 @@ const Main = () => {
     return <h1> you are offline, check your internate connection!!!</h1>;
   }
 
-  console.log(filterResturent);
+  //console.log(filterResturent);
   return (
     <>
       <div className="p-2 m-4 space-x-4 ">
