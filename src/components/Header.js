@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const status = useOnlineStatus();
@@ -8,6 +9,8 @@ const Header = () => {
   const logincheck = () => {
     loginbtn === "Login" ? setLoginbtn("Logout") : setLoginbtn("Login");
   };
+
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <div className="flex justify-between bg-emerald-900 items-center text-white ">
       <Link to={"/"}>
@@ -30,7 +33,7 @@ const Header = () => {
           <Link to="/contact">Contact</Link>
         </li>
         <li>
-          <Link to="/card">Card</Link>
+          <Link to="/cart">Cart -{cartItems.length}items</Link>
         </li>
         <button onClick={logincheck}>{loginbtn}</button>
       </div>

@@ -30,7 +30,7 @@ const ResturentMenu = () => {
   //console.log(resinfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards);
 
   return (
-    <div className="m-4 p-2 mx-52 text-center text-pink-950 w-[800]  bg-green-200">
+    <div className="m-4 p-2 mx-52 text-center text-pink-950 w-[800]  bg-green-50">
       <h1 className="text-2xl border-y font-bold">{name}</h1>
       <h3>{cuisines.join(",")}</h3>
 
