@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 const ItemsList = ({ items }) => {
-  console.log(items);
+  //console.log(items);
 
   const dispatch = useDispatch();
 

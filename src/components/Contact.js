@@ -1,7 +1,7 @@
 import React from "react";
-
+import DummyCard from "./DummyCard";
 const Contact = () => {
-  return <div className="text-3xl font-bold underline">Contact</div>;
+  return <DummyCard />;
 };
 
 export default Contact;

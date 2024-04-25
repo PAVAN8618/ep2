@@ -33,7 +33,9 @@ const Header = () => {
           <Link to="/contact">Contact</Link>
         </li>
         <li>
-          <Link to="/cart">Cart -{cartItems.length}items</Link>
+          <Link to="/cart">
+            Cart <span className="text-red-600">({cartItems.length})</span>
+          </Link>
         </li>
         <button onClick={logincheck}>{loginbtn}</button>
       </div>

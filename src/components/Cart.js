@@ -11,12 +11,13 @@ const Cart = () => {
   const handleClear = () => {
     dispatch(clearCart());
   };
+
   return (
     <div className="p-3  text-center font-semibold w-6/12 ml-72">
       <h1 className="text-2xl p-3">Cart</h1>
       <button
         onClick={handleClear}
-        className="bg-black rounded-md p-1 text-white"
+        className="bg-black rounded-md p-2 text-white "
       >
         Clear Cart
       </button>
